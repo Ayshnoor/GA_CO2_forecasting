@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{url_for('index')}}">CO2 FORECASTING</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">Time-Series Forecasting using Vector Auto-Regression</h1>
+    <p class="lead"></p>
+    <form>
+    <div class="form-group">
+    <label for="formGroupExampleInput">Please select a country for CO2 Forecast</label>
+    <div class="dropdown">
+      <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Options
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/VAR/Afghanistan">Afghanistan</a>
+        <a class="dropdown-item" href="/VAR/Albania">Albania</a>
+        <a class="dropdown-item" href="/VAR/Algeria">Algeria</a>
+        <a class="dropdown-item" href="/VAR/Andorra">Andorra</a>
+        <a class="dropdown-item" href="/VAR/Angola">Angola</a>
+        <a class="dropdown-item" href="/VAR/Argentina">Argentina</a>
+        <a class="dropdown-item" href="/VAR/Armenia">Armenia</a>
+        <a class="dropdown-item" href="/VAR/Australia">Australia</a>
+        <a class="dropdown-item" href="/VAR/Austria">Austria</a>
+        <a class="dropdown-item" href="/VAR/Azerbaijan">Azerbaijan</a>
+        <a class="dropdown-item" href="/VAR/Bahamas">Bahamas</a>
+        <a class="dropdown-item" href="/VAR/Bahrain">Bahrain</a>
+        <a class="dropdown-item" href="/VAR/Bangladesh">Bangladesh</a>
+        <a class="dropdown-item" href="/VAR/Barbados">Barbados</a>
+        <a class="dropdown-item" href="/VAR/Belarus">Belarus</a>
+        <a class="dropdown-item" href="/VAR/Belgium">Belgium</a>
+        <a class="dropdown-item" href="/VAR/Belize">Belize</a>
+        <a class="dropdown-item" href="/VAR/Benin">Benin</a>
+        <a class="dropdown-item" href="/VAR/Bhutan">Bhutan</a>
+        <a class="dropdown-item" href="/VAR/Bolivia">Bolivia</a>
+        <a class="dropdown-item" href="/VAR/Bosnia and Herzegovina">Bosnia and Herzegovina</a>
+        <a class="dropdown-item" href="/VAR/Botswana">Botswana</a>
+        <a class="dropdown-item" href="/VAR/Brazil">Brazil</a>
+        <a class="dropdown-item" href="/VAR/Brunei">Brunei</a>
+        <a class="dropdown-item" href="/VAR/Bulgaria">Bulgaria</a>
+        <a class="dropdown-item" href="/VAR/Burkina">Burkina Faso</a>
+        <a class="dropdown-item" href="/VAR/Burundi">Burundi</a>
+        <a class="dropdown-item" href="/VAR/Cambodia">Cambodia</a>
+        <a class="dropdown-item" href="/VAR/Cameroon">Cameroon</a>
+        <a class="dropdown-item" href="/VAR/Canada">Canada</a>
+        <a class="dropdown-item" href="/VAR/Cape Verde">Cape Verde</a>
+        <a class="dropdown-item" href="/VAR/Chad">Chad</a>
+        <a class="dropdown-item" href="/VAR/Chile">Chile</a>
+        <a class="dropdown-item" href="/VAR/China">China</a>
+        <a class="dropdown-item" href="/VAR/Colombia">Colombia</a>
+        <a class="dropdown-item" href="/VAR/Comoros">Comoros</a>
+        <a class="dropdown-item" href="/VAR/Congo, Dem. Rep.">Congo, Dem. Rep.</a>
+        <a class="dropdown-item" href="/VAR/Congo, Rep.">Congo, Rep.</a>
+        <a class="dropdown-item" href="/VAR/Costa Rica">Costa Rica</a>
+        <a class="dropdown-item" href="/VAR/Cote d'Ivoire">Cote d'Ivoire</a>
+        <a class="dropdown-item" href="/VAR/Croatia">Croatia</a>
+        <a class="dropdown-item" href="/VAR/Cuba">Cuba</a>
+        <a class="dropdown-item" href="/VAR/Cyprus">Cyprus</a>
+        <a class="dropdown-item" href="/VAR/Czech Republic">Czech Republic</a>
+        <a class="dropdown-item" href="/VAR/Denmark">Denmark</a>
+        <a class="dropdown-item" href="/VAR/Djibouti">Djibouti</a>
+        <a class="dropdown-item" href="/VAR/Dominica">Dominica</a>
+        <a class="dropdown-item" href="/VAR/Dominican Republic">Dominican Republic</a>
+        <a class="dropdown-item" href="/VAR/Ecuador">Ecuador</a>
+        <a class="dropdown-item" href="/VAR/Egypt">Egypt</a>
+        <a class="dropdown-item" href="/VAR/El Salvador">El Salvador</a>
+        <a class="dropdown-item" href="/VAR/Equatorial Guinea">Equatorial Guinea</a>
+        <a class="dropdown-item" href="/VAR/Eritrea">Eritrea</a>
+        <a class="dropdown-item" href="/VAR/Estonia">Estonia</a>
+        <a class="dropdown-item" href="/VAR/Eswatini">Eswatini</a>
+        <a class="dropdown-item" href="/VAR/Ethiopia">Ethiopia</a>
+        <a class="dropdown-item" href="/VAR/Fiji">Fiji</a>
+        <a class="dropdown-item" href="/VAR/Finland">Finland</a>
+        <a class="dropdown-item" href="/VAR/France">France</a>
+        <a class="dropdown-item" href="/VAR/Gabon">Gabon</a>
+        <a class="dropdown-item" href="/VAR/Gambia">Gambia</a>
+        <a class="dropdown-item" href="/VAR/Georgia">Georgia</a>
+        <a class="dropdown-item" href="/VAR/Germany">Germany</a>
+        <a class="dropdown-item" href="/VAR/Ghana">Ghana</a>
+        <a class="dropdown-item" href="/VAR/Greece">Greece</a>
+        <a class="dropdown-item" href="/VAR/Grenada">Grenada</a>
+        <a class="dropdown-item" href="/VAR/Guatemala">Guatemala</a>
+        <a class="dropdown-item" href="/VAR/Guinea">Guinea</a>
+        <a class="dropdown-item" href="/VAR/Guinea-Bissau">Guinea-Bissau</a>
+        <a class="dropdown-item" href="/VAR/Guyana">Guyana</a>
+        <a class="dropdown-item" href="/VAR/Haiti">Haiti</a>
+        <a class="dropdown-item" href="/VAR/Honduras">Honduras</a>
+        <a class="dropdown-item" href="/VAR/Hungary">Hungary</a>
+        <a class="dropdown-item" href="/VAR/Iceland">Iceland</a>
+        <a class="dropdown-item" href="/VAR/India">India</a>
+        <a class="dropdown-item" href="/VAR/Indonesia">Indonesia</a>
+        <a class="dropdown-item" href="/VAR/Iran">Iran</a>
+        <a class="dropdown-item" href="/VAR/Iraq">Iraq</a>
+        <a class="dropdown-item" href="/VAR/Ireland">Ireland</a>
+        <a class="dropdown-item" href="/VAR/Isreal">Isreal</a>
+        <a class="dropdown-item" href="/VAR/Italy">Italy</a>
+        <a class="dropdown-item" href="/VAR/Jamaica">Jamaica</a>
+        <a class="dropdown-item" href="/VAR/Japan">Japan</a>
+        <a class="dropdown-item" href="/VAR/Jordan">Jordan</a>
+        <a class="dropdown-item" href="/VAR/Kazakhstan">Kazakhstan</a>
+        <a class="dropdown-item" href="/VAR/Kenya">Kenya</a>
+        <a class="dropdown-item" href="/VAR/Kiribati">Kiribati</a>
+        <a class="dropdown-item" href="/VAR/Kuwait">Kuwait</a>
+        <a class="dropdown-item" href="/VAR/Kyrgyz Republic">Kyrgyz Republic</a>
+        <a class="dropdown-item" href="/VAR/Lao">Lao</a>
+        <a class="dropdown-item" href="/VAR/Latvia">Latvia</a>
+        <a class="dropdown-item" href="/VAR/Lebanon">Lebanon</a>
+        <a class="dropdown-item" href="/VAR/Lesotho">Lesotho</a>
+        <a class="dropdown-item" href="/VAR/Libya">Libya</a>
+        <a class="dropdown-item" href="/VAR/Liechtenstein">Liechtenstein</a>
+        <a class="dropdown-item" href="/VAR/Luxembourg">Luxembourg</a>
+        <a class="dropdown-item" href="/VAR/Madagascar">Madagascar</a>
+        <a class="dropdown-item" href="/VAR/Malawi">Malawi</a>
+        <a class="dropdown-item" href="/VAR/Malaysia">Malaysia</a>
+        <a class="dropdown-item" href="/VAR/Maldives">Maldives</a>
+        <a class="dropdown-item" href="/VAR/Mali">Mali</a>
+        <a class="dropdown-item" href="/VAR/Malta">Malta</a>
+        <a class="dropdown-item" href="/VAR/Marshall Islands">Marshall Islands</a>
+        <a class="dropdown-item" href="/VAR/Mauritania">Mauritania</a>
+        <a class="dropdown-item" href="/VAR/Mauritius">Mauritius</a>
+        <a class="dropdown-item" href="/VAR/Mexico">Mexico</a>
+        <a class="dropdown-item" href="/VAR/Micronesia, Fed. Sts">Micronesia, Fed. Sts</a>
+        <a class="dropdown-item" href="/VAR/Moldova">Moldova</a>
+        <a class="dropdown-item" href="/VAR/Mongolia">Mongolia</a>
+        <a class="dropdown-item" href="/VAR/Montenegro">Montenegro</a>
+        <a class="dropdown-item" href="/VAR/Morocco">Morocco</a>
+        <a class="dropdown-item" href="/VAR/Mozambique">Mozambique</a>
+        <a class="dropdown-item" href="/VAR/Myanmar">Myanmar</a>
+        <a class="dropdown-item" href="/VAR/Namibia">Namibia</a>
+        <a class="dropdown-item" href="/VAR/Nauru">Nauru</a>
+        <a class="dropdown-item" href="/VAR/Nepal">Nepal</a>
+        <a class="dropdown-item" href="/VAR/Netherlands">Netherlands</a>
+        <a class="dropdown-item" href="/VAR/New Zealand">New Zealand</a>
+        <a class="dropdown-item" href="/VAR/Nicaragua">Nicaragua</a>
+        <a class="dropdown-item" href="/VAR/Niger">Niger</a>
+        <a class="dropdown-item" href="/VAR/Nigeria">Nigeria</a>
+        <a class="dropdown-item" href="/VAR/North Korea">North Korea</a>
+        <a class="dropdown-item" href="/VAR/North Macedonia">North Macedonia</a>
+        <a class="dropdown-item" href="/VAR/Norway">Norway</a>
+        <a class="dropdown-item" href="/VAR/Oman">Oman</a>
+        <a class="dropdown-item" href="/VAR/Pakistan">Pakistan</a>
+        <a class="dropdown-item" href="/VAR/Palau">Palau</a>
+        <a class="dropdown-item" href="/VAR/Palestine">Palestine</a>
+        <a class="dropdown-item" href="/VAR/Panama">Panama</a>
+        <a class="dropdown-item" href="/VAR/Papua New Guinea">Papua New Guinea</a>
+        <a class="dropdown-item" href="/VAR/Paraguay">Paraguay</a>
+        <a class="dropdown-item" href="/VAR/Peru">Peru</a>
+        <a class="dropdown-item" href="/VAR/Philippines">Philippines</a>
+        <a class="dropdown-item" href="/VAR/Poland">Poland</a>
+        <a class="dropdown-item" href="/VAR/Portugal">Portugal</a>
+        <a class="dropdown-item" href="/VAR/Qatar">Qatar</a>
+        <a class="dropdown-item" href="/VAR/Romania">Romania</a>
+        <a class="dropdown-item" href="/VAR/Russia">Russia</a>
+        <a class="dropdown-item" href="/VAR/Rwanda">Rwanda</a>
+        <a class="dropdown-item" href="/VAR/Samoa">Samoa</a>
+        <a class="dropdown-item" href="/VAR/Sao Tome and Principe">Sao Tome and Principe</a>
+        <a class="dropdown-item" href="/VAR/Saudi Arabia">Saudi Arabia</a>
+        <a class="dropdown-item" href="/VAR/Senegal">Senegal</a>
+        <a class="dropdown-item" href="/VAR/Serbia">Serbia</a>
+        <a class="dropdown-item" href="/VAR/Seychelles">Seychelles</a>
+        <a class="dropdown-item" href="/VAR/Sierra Leone">Sierra Leone</a>
+        <a class="dropdown-item" href="/VAR/Singapore">Singapore</a>
+        <a class="dropdown-item" href="/VAR/Slovak Republic">Slovak Republic</a>
+        <a class="dropdown-item" href="/VAR/Slovenia">Slovenia</a>
+        <a class="dropdown-item" href="/VAR/Solomon Islands">Solomon Islands</a>
+        <a class="dropdown-item" href="/VAR/Somalia">Somalia</a>
+        <a class="dropdown-item" href="/VAR/South Africa">South Africa</a>
+        <a class="dropdown-item" href="/VAR/South Korea">South Korea</a>
+        <a class="dropdown-item" href="/VAR/South Sudan">South Sudan</a>
+        <a class="dropdown-item" href="/VAR/Spain">Spain</a>
+        <a class="dropdown-item" href="/VAR/Sri Lanka">Sri Lanka</a>
+        <a class="dropdown-item" href="/VAR/St. Kitts and Nevis">St. Kitts and Nevis</a>
+        <a class="dropdown-item" href="/VAR/St. Lucia">St. Lucia</a>
+        <a class="dropdown-item" href="/VAR/St. Vincent and the Grenadines">St. Vincent and the Grenadines</a>
+        <a class="dropdown-item" href="/VAR/Sudan">Sudan</a>
+        <a class="dropdown-item" href="/VAR/Suriname">Suriname</a>
+        <a class="dropdown-item" href="/VAR/Sweden">Sweden</a>
+        <a class="dropdown-item" href="/VAR/Switzerland">Switzerland</a>
+        <a class="dropdown-item" href="/VAR/Syria">Syria</a>
+        <a class="dropdown-item" href="/VAR/Tajikistan">Tajikistan</a>
+        <a class="dropdown-item" href="/VAR/Tanzania">Tanzania</a>
+        <a class="dropdown-item" href="/VAR/Thailand">Thailand</a>
+        <a class="dropdown-item" href="/VAR/Timor-Leste">Timor-Leste</a>
+        <a class="dropdown-item" href="/VAR/Togo">Togo</a>
+        <a class="dropdown-item" href="/VAR/Tonga">Tonga</a>
+        <a class="dropdown-item" href="/VAR/Trinidad and Tobago">Trinidad and Tobago</a>
+        <a class="dropdown-item" href="/VAR/Tunisia">Tunisia</a>
+        <a class="dropdown-item" href="/VAR/Turkey">Turkey</a>
+        <a class="dropdown-item" href="/VAR/Turkmenistan">Turkmenistan</a>
+        <a class="dropdown-item" href="/VAR/Tuvalu">Tuvalu</a>
+        <a class="dropdown-item" href="/VAR/Uganda">Uganda</a>
+        <a class="dropdown-item" href="/VAR/Ukraine">Ukraine</a>
+        <a class="dropdown-item" href="/VAR/United Arab Emirates">United Arab Emirates</a>
+        <a class="dropdown-item" href="/VAR/United Kingdom">United Kingdom</a>
+        <a class="dropdown-item" href="/VAR/United States">United States</a>
+        <a class="dropdown-item" href="/VAR/Uruguay">Uruguay</a>
+        <a class="dropdown-item" href="/VAR/Uzbekistan">Uzbekistan</a>
+        <a class="dropdown-item" href="/VAR/Vanuatu">Vanuatu</a>
+        <a class="dropdown-item" href="/VAR/Venezuela">Venezuela</a>
+        <a class="dropdown-item" href="/VAR/Vietnam">Vietnam</a>
+        <a class="dropdown-item" href="/VAR/Yemen">Yemen</a>
+        <a class="dropdown-item" href="/VAR/Zambia">Zambia</a>
+        <a class="dropdown-item" href="/VAR/Zimbabwe">Zimbabwe</a>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label for="number_years">Please input number of years for forecast</label>
+    <input type="text" class="form-control" name="number_years" placeholder="Number of Years">
+  </div>
+
+    <p> VAR model uses free GDP data (as a percentage of growth) from the University of Groningen - Faculty of Economics and Business
+      and uses free Population data from Maddison and the UN both via Gapminder.org (and are cc-by license). </p>
+
+</form>
+
+{{div_placeholder}}
+  </div>
+</div>
+
+  </body>
+</html>

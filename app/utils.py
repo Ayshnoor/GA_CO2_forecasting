@@ -76,8 +76,16 @@ def SARIMA_forecast_plot(country, years):
     #setup
     country_for_forecast = auto_ARIMA_model(str(country), years)
     country_for_forecast.setup()
+    
+    #get pickle from Amazon S3
+    bucket = 'co2models'
+    prefix = f'SARIMA_models/{country}_SARIMA.pkl'
+    s3 = boto3.resource('s3', 'us-west-2', aws_access_key_id = 'AKIAITMHNTEVDDFRLKEA', aws_secret_access_key='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')
+    with open (prefix, 'wb') as data:
+    	s3.Bucket(bucket).download_fileobj(prefix,data)
+    
     #open pickled
-    with gzip.open(f'SARIMA_models/{country}_SARIMA.pkl', 'rb') as file:
+    with gzip.open(prefix, 'rb') as file:
         p = pickle.Unpickler(file)
         pickled = p.load()
     # pickled = pickle.load(open(f'SARIMA_models/{country}_SARIMA.p', 'rb'))
@@ -105,15 +113,21 @@ def SARIMA_forecast_plot(country, years):
 
     return fig
 
-
 def FBProphet_forecast_plot(country, years):
     #setup
     country_for_forecast = prophet_model(str(country), years)
     country_for_forecast.setup()
+    
+    #get pickle from Amazon S3
+    bucket = 'co2models'
+    prefix = f'Prophet_models/{country}_Prophet.pkl'
+    s3 = boto3.resource('s3', 'us-west-2', aws_access_key_id = 'AKIAITMHNTEVDDFRLKEA', aws_secret_access_key='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')
+    with open (prefix, 'wb') as data:
+    	s3.Bucket(bucket).download_fileobj(prefix,data)
 
     #open pickled
     #pickled = pickle.load(open(f'Prophet_models/{country}_Prophet.p', 'rb')) <too large files; needed to compress pickles>
-    with gzip.open(f'Prophet_models/{country}_Prophet.pkl', 'rb') as file:
+    with gzip.open(prefix, 'rb') as file:
         p = pickle.Unpickler(file)
         pickled = p.load()
 

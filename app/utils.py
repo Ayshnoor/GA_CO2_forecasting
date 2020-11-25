@@ -81,7 +81,7 @@ def SARIMA_forecast_plot(country, years):
     #get pickle from Amazon S3
     bucket = 'co2models'
     prefix = f'SARIMA_models/{country}_SARIMA.pkl'
-    s3 = boto3.resource('s3', 'us-west-2', aws_access_key_id = 'AKIAITMHNTEVDDFRLKEA', aws_secret_access_key='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')
+    s3 = boto3.resource('s3')
     with open (prefix, 'wb') as data:
     	s3.Bucket(bucket).download_fileobj(prefix,data)
     

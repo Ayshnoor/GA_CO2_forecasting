@@ -3,12 +3,12 @@ This application intends to describe CO2 emissions on a per-country basis and ho
 The user can input country and number of years for the forecast.
 
 ## Table of Contents
-* Background
-* Data Source
-* Modelling Details
-* Technologies
-* Setup
-* Next Steps
+* [Background](Background)
+* [Data Source](Data_Source)
+* [Modelling Details](Modelling_Details)
+* [Technologies](Technologies)
+* [Setup](Setup)
+* [Next Steps](Next_Steps)
 
 ## Background
 Considering the significance of climate change and the impact CO2 emissions have on our planet, how do we, as a world, find solutions to reduce the impact of global CO2 emissions?
@@ -30,17 +30,17 @@ Three different time-series forecasting models generated nearly 600 predictive m
 ## Technologies
 * App created using Flask library
 * Graphs and World Map generated using Plotly library
-* Individual libraries associated with each different model type - VAR uses statsmodel.tsa.api package (VAR), FBProphet uses Prophet from the FBProphet package, and SARIMA uses auto_arima from pmdarima.arima package
+* Individual libraries associated with each different model type - VAR uses statsmodel.tsa.api package (VAR), FBProphet uses Prophet from the FBProphet package, and SARIMA uses auto_arima from pmdarima.arima package. Models were pickled and compressed using gzip.
+
 
 ## Web App
 
-Heroku has strict requirements on size given its free nature of hosting web apps. This app has fewer Prophet and SARIMA models because of this unfortunately. 
+Heroku has strict requirements on size given its free nature of hosting web apps. Therefore, Pickles were created for each model and compressed using gzip. AWS S3 was needed to store the large files related to SARIMA and FBProphet. Code included in the utils.py to retreive the compressed pickles and to decompress and use for forecast. 
 
-Please find the web app here:
+Please find the web app here: https://co2-forecasting.herokuapp.com/
 
 ## Next Steps
 This web app is step one, but future steps include the following:
-* Refinement of models (additional hyperparameter tuning)
 * Aggregation of forecast to create a regional or global projection
 * Recommendation on how to reduce CO2 emissions in various regions (based on possible projections)
 

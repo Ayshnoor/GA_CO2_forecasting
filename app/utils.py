@@ -28,7 +28,7 @@ def VAR_forecast_plot(country, years):
 
     #open pickled
     pickled = pickle.load(open(f'VAR_models/{country}_VAR.p', 'rb'))
-    pickled_fit = pickled.fit(maxlags=10, ic='aic')
+    pickled_fit = pickled.fit(maxlags=5, ic='aic')
     forecast = pickled_fit.forecast(y=country_for_forecast.new_df.values, steps=years)
 
     #forecast df

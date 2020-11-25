@@ -82,13 +82,10 @@ def SARIMA_forecast_plot(country, years):
     bucket = 'co2models'
     prefix = f'SARIMA_models/{country}_SARIMA.pkl'
     s3 = boto3.resource('s3')
-    with open (prefix, 'wb') as data:
-    	s3.Bucket(bucket).download_fileobj(prefix,data)
-    
-    #open pickled
-    with gzip.open(prefix, 'rb') as file:
-        p = pickle.Unpickler(file)
-        pickled = p.load()
+    gzipfile = gzip.open(s3.Bucket(bucket).Object(prefix).get()['Body'], 'rb')
+    p = pickle.Unpickler(gzipfile)
+    pickled = p.load()
+
     # pickled = pickle.load(open(f'SARIMA_models/{country}_SARIMA.p', 'rb'))
     forecast = pickled.predict(n_periods=years)
     #forecast df
@@ -122,15 +119,11 @@ def FBProphet_forecast_plot(country, years):
     #get pickle from Amazon S3
     bucket = 'co2models'
     prefix = f'Prophet_models/{country}_Prophet.pkl'
-    s3 = boto3.resource('s3', 'us-west-2', aws_access_key_id = 'AKIAITMHNTEVDDFRLKEA', aws_secret_access_key='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')
-    with open (prefix, 'wb') as data:
-    	s3.Bucket(bucket).download_fileobj(prefix,data)
+    s3 = boto3.resource('s3')
+    gzipfile = gzip.open(s3.Bucket(bucket).Object(prefix).get()['Body'], 'rb')
+    p = pickle.Unpickler(gzipfile)
+    pickled = p.load()
 
-    #open pickled
-    #pickled = pickle.load(open(f'Prophet_models/{country}_Prophet.p', 'rb')) <too large files; needed to compress pickles>
-    with gzip.open(prefix, 'rb') as file:
-        p = pickle.Unpickler(file)
-        pickled = p.load()
 
     #forecast df
     forecast = pd.DataFrame([year for year in range(2019, 2019 + years)], columns=['ds'])

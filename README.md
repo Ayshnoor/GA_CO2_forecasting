@@ -31,10 +31,10 @@ Three different time-series forecasting models generated nearly 600 predictive m
 * App created using Flask library
 * Graphs and World Map generated using Plotly library
 * Individual libraries associated with each different model type - VAR uses statsmodel.tsa.api package (VAR), FBProphet uses Prophet from the FBProphet package, and SARIMA uses auto_arima from pmdarima.arima package. Models were pickled and compressed using gzip.
+* Pickled models are included in the repo for reference, but are not used in the build of the web app
 
 
 ## Web App
-
 Heroku has strict requirements on size given its free nature of hosting web apps. Therefore, Pickles were created for each model and compressed using gzip. AWS S3 was needed to store the large files related to SARIMA and FBProphet. Code included in the utils.py to retreive the compressed pickles and to decompress and use for forecast. 
 
 Please find the web app here: https://co2-forecasting.herokuapp.com/

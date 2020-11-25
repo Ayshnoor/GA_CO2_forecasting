@@ -18,6 +18,7 @@ from prophetm import prophet_model
 from plotly.subplots import make_subplots
 import plotly.offline as pyo
 import plotly.graph_objs as go
+import boto3
 
 
 def VAR_forecast_plot(country, years):

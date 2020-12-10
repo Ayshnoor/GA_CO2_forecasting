@@ -84,7 +84,7 @@ def SARIMA_forecast_plot(country, years):
     s3 = boto3.resource('s3')
     gzipfile = gzip.open(s3.Bucket(bucket).Object(prefix).get()['Body'], 'rb')
     p = pickle.Unpickler(gzipfile)
-    pickled = p.load()
+    pickled = p.load() 
 
     # pickled = pickle.load(open(f'SARIMA_models/{country}_SARIMA.p', 'rb'))
     forecast = pickled.predict(n_periods=years)

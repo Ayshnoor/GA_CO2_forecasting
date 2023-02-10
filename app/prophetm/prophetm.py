@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-from fbprophet import Prophet
+from prophet import Prophet
 from sklearn.metrics import mean_squared_error, r2_score
 import gzip, pickle, pickletools
 
